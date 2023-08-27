@@ -1,0 +1,26 @@
+Input:
+N = 5, S = 12
+A[] = {1,2,3,7,5}
+Output: 2 4
+Explanation: The sum of elements 
+from 2nd position to 4th position 
+is 12.
+Code:
+  vector<int> subarraySum(vector<int>arr, int n, long long s)
+    {
+        int left=0,right=0;
+        int sum=0;
+       while(right<n && left<n){
+           sum=sum+arr[right];
+           while(sum>s && left<right){
+                sum=sum-arr[left];
+                left++;
+            }
+            if(sum==s){
+                    return {(left+1),(right+1)};
+                }
+            right++;
+        }
+        return {-1};
+        
+    }
