@@ -1,0 +1,19 @@
+ vector<int> duplicates(int arr[], int n) {
+         set<int>ans1;
+        unordered_map<int,int>map;
+        for(int i=0;i<n;i++){
+            map[arr[i]]++;
+             
+        }
+        for(auto i:map){
+            if(i.second>1){
+                    ans1.insert(i.first);
+                    
+                }
+        }
+       vector<int>ans(ans1.begin(),ans1.end());
+        if(ans.empty()){
+            ans.push_back(-1);
+        }
+        return ans;
+    }
