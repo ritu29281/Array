@@ -1,0 +1,16 @@
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+CODE:
+
+  bool canJump(vector<int>& nums) {
+        int jumptoreach=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            if(jumptoreach<i){
+                return false;
+            }
+            jumptoreach=max(jumptoreach,i+nums[i]);
+        }
+        return true;
+    }
