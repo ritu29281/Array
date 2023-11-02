@@ -1,0 +1,29 @@
+Input:
+N = 4
+A[] = {1,2,3,2}
+x = 1, y = 2
+Output: 1
+Explanation: x = 1 and y = 2. There are
+two distances between x and y, which are
+1 and 3 out of which the least is 1.
+
+CODE:
+ int minDist(int a[], int n, int x, int y) {
+        int mindist=INT_MAX;
+        int xpos=-1,ypos=-1;
+        for(int i=0;i<n;i++){
+            if(a[i]==x){
+               xpos=i; 
+            }
+            if(a[i]==y){
+                ypos=i;
+            }
+           if(xpos!=-1 && ypos!=-1){
+               mindist=min(mindist, abs(xpos-ypos));
+           } 
+        }
+        if(xpos==-1 || ypos==-1){
+            return -1;
+        }
+        return mindist;
+    }
