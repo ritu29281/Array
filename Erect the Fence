@@ -1,0 +1,54 @@
+You are given an array trees where trees[i] = [xi, yi] represents the location of a tree in the garden.
+
+Fence the entire garden using the minimum length of rope, as it is expensive. The garden is well-fenced only if all the trees are enclosed.
+
+Return the coordinates of trees that are exactly located on the fence perimeter. You may return the answer in any order.
+Input: trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]
+Output: [[1,1],[2,0],[4,2],[3,3],[2,4]]
+Explanation: All the trees will be on the perimeter of the fence except the tree at [2, 2], which will be inside the fence.
+
+CODE:
+
+
+class Solution {
+public:
+   static int findEquation(pair<int,int>&p1,pair<int,int>&p2,pair<int,int&>p3){
+        int x1=p1.first;
+        int x2=p2.first;
+        int x3=p3.first;
+        int y1=p1.second;
+        int y2=p2.second;
+        int y3=p3.second;
+        return (y3-y2)*(x2-x1)-(y2-y1)*(x3-x2);
+    }
+    vector<vector<int>> outerTrees(vector<vector<int>>& trees) {
+        sort(trees.begin(),trees.end());
+        vector<vector<int>>ans;
+        deque<pair<int,int>>lower,upper;
+        for(auto &points: trees){
+            int l=lower.size();
+            int u=upper.size();
+            while(l>=2 && findEquation(lower[l-2],lower[l-1],{points[0],points[1]})<0){
+                l--;
+                lower.pop_back();
+            }
+            while(u>=2 && findEquation(upper[u-2],upper[u-1],{points[0],points[1]})>0){
+                u--;
+                upper.pop_back();
+            }
+            lower.push_back({points[0],points[1]});
+            upper.push_back({points[0],points[1]});
+        }
+        set<pair<int,int>>st;
+        for(auto & point:lower){
+            st.insert(point);
+        }
+         for(auto & point:upper){
+            st.insert(point);
+        }
+        for(auto point: st){
+            ans.push_back({point.first,point.second});
+        }
+        return ans;
+    }
+};
