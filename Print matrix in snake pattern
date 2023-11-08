@@ -1,0 +1,42 @@
+Input:
+N = 3 
+matrix[][] = {{45, 48, 54},
+             {21, 89, 87}
+             {70, 78, 15}}
+Output: 
+45 48 54 87 89 21 70 78 15 
+Explanation:
+Matrix is as below:
+45 48 54
+21 89 87
+70 78 15
+Printing it in snake pattern will lead to 
+the output as 45 48 54 87 89 21 70 78 15.
+
+CODE:
+
+vector<int> snakePattern(vector<vector<int> > matrix)
+    {  
+        vector<int>ans;
+        int n=matrix.size();
+       
+      for(int i=0;i<n;i++){
+          if(i%2==0){
+              
+              int j=0;
+              while(j<n){
+                  ans.push_back(matrix[i][j]);
+                  j++;
+              }
+          }
+          else{
+              int j=n-1;
+              while(j>=0){
+                  ans.push_back(matrix[i][j]);
+                  j--;
+              }
+          }
+      }
+      return ans;
+       
+    }
