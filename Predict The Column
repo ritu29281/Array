@@ -1,0 +1,35 @@
+Input:
+N = 3
+M[][] = {{0, 0, 0},
+          {1, 0, 1},
+          {0, 1, 1}}
+Output:
+0
+Explanation:
+0th column (0-based indexing) is having 2 zeros which is maximum among all columns and comes first.
+
+CODE:
+
+ int maxCount = -1;
+        int result = -1;
+        
+        for(int i = 0;i<N;i++){
+            int ZeroCount = 0;
+            for(int j = 0;j<N;j++){
+                if(arr[j][i] == 0){
+                    ZeroCount++;
+                }
+            }
+            
+            if(ZeroCount == 0)
+                continue;
+            else{
+                if(ZeroCount > maxCount){
+                    maxCount = ZeroCount;
+                    result = i;
+                }
+            }
+        }
+        
+        return result;
+    }
