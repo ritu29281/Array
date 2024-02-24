@@ -1,0 +1,23 @@
+Input:
+n = 12
+Output: 
+13
+Explanation: 
+Break n = 12 in three parts {12/2, 12/3, 12/4} = {6, 4, 3}, now current sum is = (6 + 4 + 3) = 13. Further breaking 6, 4 and 3 into parts will produce sum less than or equal to 6, 4 and 3 respectively.
+
+  int solve(int sum,int n){
+        sum=n/2+n/3+n/4;
+        int ans=0;
+        if(sum<=n){
+            return n;
+        }
+        ans= max(ans,sum);
+        
+       
+        return max(ans,solve(sum,n/2)+solve(sum,n/3)+solve(sum,n/4));
+    }
+        int maxSum(int n)
+        {
+           
+           solve(0,n);
+        }
