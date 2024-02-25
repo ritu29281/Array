@@ -1,0 +1,22 @@
+Input
+n = 10
+Output
+2
+Explanation
+There are two ways {5,5} and {10}.
+
+long long int count(long long int n)
+    {
+     vector<int>v(n+1,0);
+     v[0]=1;
+     for(int i=3;i<=n;i++){
+        v[i]=v[i]+v[i-3]; 
+     }
+     for(int i=5;i<=n;i++){
+        v[i]=v[i]+v[i-5]; 
+     }
+     for(int i=10;i<=n;i++){
+        v[i]=v[i]+v[i-10]; 
+     }
+      return v[n];	
+    }
