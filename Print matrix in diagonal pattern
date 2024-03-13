@@ -1,0 +1,45 @@
+Input:
+n = 3
+mat[][] = {{1, 2, 3},
+           {4, 5, 6},
+           {7, 8, 9}}
+Output: {1, 2, 4, 7, 5, 3, 6, 8, 9}
+Explaination:
+Starting from (0, 0): 1,
+Move to the right to (0, 1): 2,
+Move diagonally down to (1, 0): 4,
+Move diagonally down to (2, 0): 7,
+Move diagonally up to (1, 1): 5,
+Move diagonally up to (0, 2): 3,
+Move to the right to (1, 2): 6,
+Move diagonally up to (2, 1): 8,
+Move diagonally up to (2, 2): 9
+There for the output is {1, 2, 4, 7, 5, 3, 6, 8, 9}.
+
+vector<int> matrixDiagonally(vector<vector<int>>&mat)
+    {
+         map<int,vector<int>>mp;
+         vector<int>ans;
+        
+         for(int i=0;i<mat.size();i++){
+             
+             for(int j=0;j<mat[0].size();j++){
+                  
+                
+                 mp[i+j].push_back(mat[i][j]);
+             }
+         }
+         
+         for(auto it:mp){
+             
+             if(it.first%2==0){
+                 reverse(it.second.begin(),it.second.end());
+             }
+             for(auto i:it.second){
+                
+                 ans.push_back(i);
+             }
+           
+         }
+         return ans;
+    }
