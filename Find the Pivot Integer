@@ -1,0 +1,27 @@
+Input: n = 8
+Output: 6
+Explanation: 6 is the pivot integer since: 1 + 2 + 3 + 4 + 5 + 6 = 6 + 7 + 8 = 21.
+
+int pivotInteger(int n) {
+       map<int,int>mp1;
+       map<int,int>mp2;
+        int sum=0;
+        for(int i=1;i<=n;i++){
+            sum=sum+i;
+            mp1[i]=sum;
+        }
+      
+        sum=0;
+        for(int i=n;i>0;i--){
+            sum=sum+i;
+            mp2[i]=sum;
+        }
+       
+        for(auto it:mp1){
+            if(it.second==mp2[it.first]){
+              
+                return it.first;
+            }
+        }
+        return -1;
+    }
