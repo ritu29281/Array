@@ -1,0 +1,37 @@
+ vector<int> productExceptSelf(vector<int>& nums) {
+       int n=nums.size();
+       vector<int>ans(n,0);
+        int zero=0;
+        int count=1;
+        bool flag=false;
+        int i=0;
+        while(i<nums.size()){
+            if(nums[i]!=0){
+                count=count*nums[i];    
+                
+            }
+            else{
+                zero++;
+                flag=true;
+            } 
+            i++;
+        }
+       
+        for(int j=0;j<nums.size();j++){
+            if(flag==true && nums[j]!=0){
+                ans[j]=0;
+            }
+            else if(zero>=2){
+                ans[j]=0;
+            }
+            else if(flag==true && nums[j]==0){
+            
+                ans[j]=count;
+            }
+            else{
+                ans[j]=count/nums[j];
+            }
+            
+         }
+        return ans;
+    }
